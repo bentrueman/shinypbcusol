@@ -1,6 +1,8 @@
 
 #' Calculate equilibrium lead solubility using `pbcusol` and `shiny`
 #'
+#' @description This function is used in deploying the `shinypbcusol` `shiny` app.
+#'
 #' @param ... Argument passed to function. (Currently ignored.)
 #'
 #' @importFrom dplyr %>%

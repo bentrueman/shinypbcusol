@@ -1,13 +1,13 @@
 Package: shinypbcusol
-Title: What the Package Does (One Line, Title Case)
+Title: Calculate Lead and Copper Solubility Using Shiny
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Benjamin",
+           family = "Trueman",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "benjamin.trueman@dal.ca",
+           comment = c(ORCID = "0000-0002-1539-3092"))
+Description: shinypbcusol provides a Shiny interface for pbcusol, which calculates lead and copper solubility using PHREEQC via tidyphreeqc.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

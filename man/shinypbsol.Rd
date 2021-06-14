@@ -10,5 +10,5 @@ shinypbsol(...)
 \item{...}{Argument passed to function. (Currently ignored.)}
 }
 \description{
-Calculate equilibrium lead solubility using \code{pbcusol} and \code{shiny}
+This function is used in deploying the \code{shinypbcusol} \code{shiny} app.
 }
