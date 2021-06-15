@@ -20,18 +20,11 @@ knitr::opts_chunk$set(
 
 `shinypbcusol` provides a convenient interface for `pbcusol` (Trueman, 2021; Dunnington, 2019) using `shiny` (Chang et al., 2021).
 
-## Installation
+## Getting started  
 
-If you'd like to modify `shinypbcusol`, you can install the development version from [GitHub](https://github.com/) with:
+The `shinypbcusol` app is available [here](https://bentrueman.shinyapps.io/shinypbcusol/). 
 
-``` r
-# install.packages("remotes")
-remotes::install_github("bentrueman/shinypbcusol")
-```
-
-Otherwise, the app is available [here](https://bentrueman.shinyapps.io/shinypbcusol/). 
-
-Currently, it generates lead solubility predictions using the LEADSOL (Schock et al. 1996) and *minteq.v4* (Charlton and Parkhurst, 2011; Parkhurst and Appelo, 2013) databases. Lead binding to humic substances is modeled here using an approximation to the Windermere Humic Aueous Model (Tipping and Hurley, 1992). See `pbcusol::eq_sol_wham()`.
+Currently, it generates lead solubility predictions using the LEADSOL (Schock et al. 1996) and *minteq.v4* (Charlton and Parkhurst, 2011; Parkhurst and Appelo, 2013) databases. Lead binding to humic substances is modeled using an approximation to the Windermere Humic Aqueous Model (Tipping and Hurley, 1992). See `pbcusol::eq_sol_wham()`.
 
 # References  
 
