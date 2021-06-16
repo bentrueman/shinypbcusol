@@ -56,7 +56,7 @@ plot_kinetics <- function(eq_sol) {
       diameter = 1e3 * 2 * .data$radius
     )
 
-  purrr::map_dfr(eq_sol, ~ dplyr::mutate(plot_in, value = .x * value), .id = "model") %>%
+  kplot <- purrr::map_dfr(eq_sol, ~ dplyr::mutate(plot_in, value = .x * value), .id = "model") %>%
     ggplot2::ggplot(
       ggplot2::aes(
         x = .data$time_s / 3600,
@@ -66,10 +66,25 @@ plot_kinetics <- function(eq_sol) {
       )
     ) +
     ggplot2::facet_wrap(ggplot2::vars(.data$model), ncol = 1) +
-    ggplot2::geom_line() +
-    ggplot2::labs(x = "Stagnation time (h)", y = expression("[Pb] after stagnation (ppb)"), col = "Lead pipe\ndiameter (mm)") +
+    ggplot2::geom_line(size = 1) +
+    ggplot2::labs(
+      x = "Stagnation time (h)",
+      y = expression("[Pb] after stagnation (ppb)"),
+      col = "Pipe diameter (mm)"
+    ) +
     ggplot2::guides(col = ggplot2::guide_colorbar()) +
     ggplot2::theme_minimal(18) +
-    ggplot2::theme(legend.position = "bottom")
+    ggplot2::theme(text = ggplot2::element_text(color = "#606060"), legend.position = "bottom")
+
+    patchwork::wrap_plots(kplot) +
+    patchwork::plot_annotation(
+      title = "Lead release vs. stagnation time",
+      subtitle = "<span style = 'color:#132B43;'>Small diameter pipes</span><span style = 'color:#808080;'> reach equilibrium faster than </span><br>
+      <span style = 'color:#56B1F7;'>large diameter pipes.</span>"
+    ) &
+    ggplot2::theme(
+      plot.title = ggplot2::element_text(size = 18, color = "#606060"),
+      plot.subtitle = ggtext::element_markdown(size = 16)
+    )
 
 }

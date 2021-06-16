@@ -45,7 +45,7 @@ shinypbsol <- function(...) {
         )
       ),
       shiny::column(3, align = "left",
-        shiny::HTML("Equilibrium lead solubility at 25&deg;C:"),
+        shiny::HTML("&ensp;&nbsp;&nbsp;Equilibrium lead solubility at 25&deg;C:"),
         shiny::tableOutput("pbsol"),
         shiny::plotOutput("plot", width = 450, height = 765)
       )
