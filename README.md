@@ -19,7 +19,9 @@ Currently, it generates lead solubility predictions using the LEADSOL
 (Schock et al. 1996) and *minteq.v4* (Charlton and Parkhurst, 2011;
 Parkhurst and Appelo, 2013) databases. Lead binding to humic substances
 is modeled using an approximation to the Windermere Humic Aqueous Model
-(Tipping and Hurley, 1992). See `pbcusol::eq_sol_wham()`.
+(Tipping and Hurley, 1992; see `pbcusol::eq_sol_wham()`). Lead
+concentration is shown as a function of stagnation time inside a lead
+pipe using a model described by Kuch and Wagner (1983).
 
 # References
 
@@ -34,6 +36,10 @@ languages. Computers & Geosciences, v. 37, p. 1653-1663.
 
 Dunnington, D. 2019. tidyphreeqc: Tidy Geochemical Modeling Using
 PHREEQC. <https://github.com/paleolimbot/tidyphreeqc>.
+
+Kuch, A., and I. Wagner. 1983. A mass transfer model to describe lead
+concentrations in drinking water. Water Research, 17(10), 1303-1307.
+(<http://doi.org/10.1016/0043-1354(83)90256-7>
 
 Parkhurst, D. L., and C. A. J. Appelo. 2013. Description of input and
 examples for PHREEQC version 3–A computer program for speciation, batch-
