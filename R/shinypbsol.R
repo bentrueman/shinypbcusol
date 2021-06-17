@@ -61,8 +61,11 @@ shinypbsol <- function(...) {
 
     table1 <- shiny::reactive(
       tibble::tibble(
-        LEADSOL = glue::glue("{round(out_leadsol())} ppb"),
-        minteq.v4 = glue::glue("{round(out_minteq.v4())} ppb")
+        `Calculated DIC` = glue::glue(
+          "{round(pbcusol::calculate_dic(input$pH, input$alkalinity), 1)} ppm C"
+        ),
+        LEADSOL = glue::glue("{round(out_leadsol())} ppb Pb"),
+        minteq.v4 = glue::glue("{round(out_minteq.v4())} ppb Pb")
       )
     )
 
