@@ -8,6 +8,7 @@
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #'
+#' @export
 shinypbsol <- function(...) {
   ui <- shiny::fluidPage(
     theme = bslib::bs_theme(version = 4, bootswatch = "flatly"),

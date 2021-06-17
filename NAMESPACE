@@ -3,5 +3,6 @@
 export(eq_sol_tbl)
 export(kinetic_release)
 export(plot_kinetics)
+export(shinypbsol)
 importFrom(dplyr,"%>%")
 importFrom(rlang,.data)

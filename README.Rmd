@@ -26,6 +26,13 @@ The `shinypbcusol` app is available [here](https://bentrueman.shinyapps.io/shiny
 
 Currently, it generates lead solubility predictions using the LEADSOL (Schock et al. 1996) and *minteq.v4* (Charlton and Parkhurst, 2011; Parkhurst and Appelo, 2013) databases. Lead binding to humic substances is modeled using an approximation to the Windermere Humic Aqueous Model (Tipping and Hurley, 1992; see `pbcusol::eq_sol_wham()`). Lead concentration is shown as a function of stagnation time inside a lead pipe using a model described by Kuch and Wagner (1983). 
 
+`shinypbcusol` can also be accessed via R. Install the development version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("bentrueman/shinypbcusol")
+```
+
 # References  
 
 Chang, W., J. Cheng, J.J. Allaire, C. Sievert, B. Schloerke, Y. Xie, J. Allen, J. McPherson, A. Dipert and B. Borges. 2021. shiny: Web Application Framework for R. R package version 1.6.0. https://CRAN.R-project.org/package=shiny

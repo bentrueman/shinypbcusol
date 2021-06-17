@@ -23,6 +23,14 @@ is modeled using an approximation to the Windermere Humic Aqueous Model
 concentration is shown as a function of stagnation time inside a lead
 pipe using a model described by Kuch and Wagner (1983).
 
+`shinypbcusol` can also be accessed via R. Install the development
+version from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("bentrueman/shinypbcusol")
+```
+
 # References
 
 Chang, W., J. Cheng, J.J. Allaire, C. Sievert, B. Schloerke, Y. Xie, J.
