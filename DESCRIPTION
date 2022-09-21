@@ -23,6 +23,7 @@ Imports:
     patchwork,
     pbcusol,
     phreeqc,
+    pkgload,
     purrr,
     reshape2,
     rlang,
