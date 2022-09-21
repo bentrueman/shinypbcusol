@@ -23,8 +23,8 @@ kinetic_release <- function(
   results <- matrix(NA, ncol = length(t), nrow = length(a)) #collector matrix for concentrations
   rownames(results) <- paste0("rad_", a)
   for(i in 1:length(t)) {
-    Fo <- D * t[i] / (4 * a ^ 2) #Fourier number
-    Bi <- beta * 2 * a / D #Biot number
+    Fo <- D * t[i] / (4 * a ^ 2) # Fourier number
+    Bi <- beta * 2 * a / D # Biot number
     numerator <- -4 * Fo
     denominator <- 1 / Bi + (5.78 ^ 2 + 4 / (pi * Fo)) ^ (-0.5)
     results[, i] <-  1 - exp( numerator / denominator ) # Ct is the normalized Pb conc. post-stag.
@@ -69,12 +69,16 @@ plot_kinetics <- function(eq_sol) {
     ggplot2::geom_line(size = 1) +
     ggplot2::labs(
       x = "Stagnation time (h)",
-      y = expression("[Pb] after stagnation (ppb)"),
+      y = "[Pb] after stagnation (&mu;g L <sup>-1<sup>)",
       col = "Pipe diameter (mm)"
     ) +
     ggplot2::guides(col = ggplot2::guide_colorbar()) +
     ggplot2::theme_minimal(18) +
-    ggplot2::theme(text = ggplot2::element_text(color = "#606060"), legend.position = "bottom")
+    ggplot2::theme(
+      text = ggplot2::element_text(color = "#606060"),
+      legend.position = "bottom",
+      axis.title.y = ggtext::element_markdown()
+    )
 
     patchwork::wrap_plots(kplot) +
     patchwork::plot_annotation(
