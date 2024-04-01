@@ -12,7 +12,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 Imports: 
     bslib,
     chemr,
@@ -23,7 +23,6 @@ Imports:
     patchwork,
     pbcusol,
     phreeqc,
-    pkgload,
     purrr,
     reshape2,
     rlang,
@@ -31,7 +30,8 @@ Imports:
     stats,
     stringr,
     tibble,
-    tidyselect
+    tidyselect,
+    vroom
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

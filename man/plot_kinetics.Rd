@@ -4,13 +4,15 @@
 \alias{plot_kinetics}
 \title{Plot a kinetic metal release curve due to stagnation in a pipe.}
 \usage{
-plot_kinetics(eq_sol)
+plot_kinetics(eq_sol, return = "plot")
 }
 \arguments{
 \item{eq_sol}{The equilibrium solubility value.}
+
+\item{return}{Options are "plot" for a ggplot object, or "table" for the table of data that the plot represent.}
 }
 \value{
-A ggplot2 object.
+A ggplot2 object or a data frame.
 }
 \description{
 Plot a kinetic metal release curve due to stagnation in a pipe.
