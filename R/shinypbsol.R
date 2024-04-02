@@ -7,6 +7,7 @@
 #'
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
+#' @importFrom vroom vroom_write
 #'
 #' @export
 shinypbsol <- function(...) {
@@ -59,7 +60,8 @@ shinypbsol <- function(...) {
       shiny::column(3, align = "left",
         shiny::HTML("&ensp;&nbsp;&nbsp;Equilibrium lead solubility at 25&deg;C:"),
         shiny::tableOutput("pbsol"),
-        shiny::plotOutput("plot", width = 450, height = 765)
+        shiny::plotOutput("plot", width = 450, height = 765),
+        shiny::downloadButton("download")
       )
     ),
     shiny::tags$footer(shiny::HTML(
@@ -92,6 +94,32 @@ shinypbsol <- function(...) {
     })
 
     output$pbsol <- shiny::renderTable({table1()})
+
+    output$download <- shiny::downloadHandler(
+      filename = function() {
+        "shinypbsol-output.tsv"
+      },
+      content = function(file) {
+        out_list <- list(
+          "LEADSOL" = out_leadsol(),
+          "minteq.v4" = out_minteq.v4()
+        )
+        out_table <- plot_kinetics(out_list, return = "table") %>%
+          dplyr::mutate(
+            pH = input$pH,
+            alkalinity_mg_caco3_l = input$alkalinity,
+            phosphate_mg_p_l = input$phosphate,
+            chloride_mg_l = input$chloride,
+            sulfate_mg_so4_l = input$sulfate,
+            calcium_mg_l = input$calcium,
+            magnesium_mg_l = input$magnesium,
+            humic_substances_mg_c_l = input$humic,
+            aluminum_mg_l = input$aluminum
+          )
+        vroom::vroom_write(out_table, file)
+        # readr::write_csv(out_table, file)
+      }
+    )
 
   }
 

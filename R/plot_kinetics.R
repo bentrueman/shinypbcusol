@@ -39,13 +39,14 @@ kinetic_release <- function(
 #' Plot a kinetic metal release curve due to stagnation in a pipe.
 #'
 #' @param eq_sol The equilibrium solubility value.
+#' @param return Options are "plot" for a ggplot object, or "table" for the table of data that the plot represent.
 #'
-#' @return A ggplot2 object.
+#' @return A ggplot2 object or a data frame.
 #' @export
 #'
 #' @examples
 #' plot_kinetics(100)
-plot_kinetics <- function(eq_sol) {
+plot_kinetics <- function(eq_sol, return = "plot") {
   plot_in <- kinetic_release(
     a = seq(5, 25, by = 1) / 1000, # sequence of pipe radii
     t = 3600 * seq(0, 24, by = 0.1), # sequence of time t for plot
@@ -56,17 +57,20 @@ plot_kinetics <- function(eq_sol) {
       diameter = 1e3 * 2 * .data$radius
     )
 
-  kplot <- purrr::map_dfr(eq_sol, ~ dplyr::mutate(plot_in, value = .x * value), .id = "model") %>%
+  table_out <- purrr::map_dfr(eq_sol, ~ dplyr::mutate(plot_in, pb_ppb = .x * value), .id = "model") |>
+    dplyr::transmute(time_hours = .data$time_s / 3600, pb_ppb = .data$pb_ppb, pipe_diameter_mm = .data$diameter, model = .data$model)
+
+  kplot <- table_out %>%
     ggplot2::ggplot(
       ggplot2::aes(
-        x = .data$time_s / 3600,
-        y = .data$value,
-        col = .data$diameter,
-        group = .data$diameter
+        x = .data$time_hours,
+        y = .data$pb_ppb,
+        col = .data$pipe_diameter_mm,
+        group = .data$pipe_diameter_mm
       )
     ) +
     ggplot2::facet_wrap(ggplot2::vars(.data$model), ncol = 1) +
-    ggplot2::geom_line(size = 1) +
+    ggplot2::geom_line(linewidth = 1) +
     ggplot2::labs(
       x = "Stagnation time (h)",
       y = "[Pb] after stagnation (&mu;g L <sup>-1<sup>)",
@@ -80,7 +84,7 @@ plot_kinetics <- function(eq_sol) {
       axis.title.y = ggtext::element_markdown()
     )
 
-    patchwork::wrap_plots(kplot) +
+    final_plot <- patchwork::wrap_plots(kplot) +
     patchwork::plot_annotation(
       title = "Lead release vs. stagnation time",
       subtitle = "<span style = 'color:#132B43;'>Small diameter pipes</span><span style = 'color:#808080;'> reach equilibrium faster than </span><br>
@@ -90,5 +94,6 @@ plot_kinetics <- function(eq_sol) {
       plot.title = ggplot2::element_text(size = 18, color = "#606060"),
       plot.subtitle = ggtext::element_markdown(size = 16)
     )
-
+    stopifnot("argument 'return' must be either 'plot' or 'table'" = return %in% c("plot", "table"))
+    if (return == "plot") final_plot else table_out
 }
