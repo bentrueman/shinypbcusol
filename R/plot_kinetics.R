@@ -70,7 +70,7 @@ plot_kinetics <- function(eq_sol, return = "plot") {
       )
     ) +
     ggplot2::facet_wrap(ggplot2::vars(.data$model), ncol = 1) +
-    ggplot2::geom_line(size = 1) +
+    ggplot2::geom_line(linewidth = 1) +
     ggplot2::labs(
       x = "Stagnation time (h)",
       y = "[Pb] after stagnation (&mu;g L <sup>-1<sup>)",
